@@ -80,7 +80,7 @@ def generate_response(prompt):
         st.session_state['messages'].append({"role": "assistant", "content": response})
 
     except Exception as e:
-        response = e
+        response = 'Error'
         st.session_state['messages'].append({"role": "assistant", "content": response})
 
     # print(st.session_state['messages'])

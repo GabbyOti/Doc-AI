@@ -2,16 +2,18 @@ import streamlit as st
 import openai
 from streamlit_chat import message
 import os
-from dotenv import load_dotenv
+import secrets_beta
+import re
+from decouple import config
 
-load_dotenv()
+
 # Setting page title and header
 st.set_page_config(page_title="DOC-AI", page_icon=":robot_face:")
 st.markdown("<h1 style='text-align: center;'>DOC-AI - ask your medical questions </h1>", unsafe_allow_html=True)
 
 # Set org ID and API key
 
-openai.api_key = os.environ['OPENAI_API_KEY']
+openai.api_key = config("OPENAI_API_KEY")
 
 # Initialise session state variables
 if 'generated' not in st.session_state:

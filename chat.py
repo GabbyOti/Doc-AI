@@ -10,7 +10,7 @@ st.set_page_config(page_title="DOC-AI", page_icon=":robot_face:")
 st.markdown("<h1 style='text-align: center;'>DOC-AI - ask your medical questions </h1>", unsafe_allow_html=True)
 
 # Set org ID and API key
-#openai.organization = "org-XZo2PFPS7K4LpyHVnTtFxmKO"
+
 openai.api_key = os.environ['OPENAI_API_KEY']
 
 # Initialise session state variables
@@ -65,6 +65,7 @@ Here is a query from a user: """
 # generate a response
 def generate_response(prompt):
     st.session_state['messages'].append({"role": "user", "content": prompt})
+    #response = ''
 
     try:
         completion = openai.Completion.create(
@@ -79,7 +80,8 @@ def generate_response(prompt):
         st.session_state['messages'].append({"role": "assistant", "content": response})
 
     except Exception as e:
-        st.session_state['messages'].append({"role": "assistant", "content": e})
+        response = e
+        st.session_state['messages'].append({"role": "assistant", "content": response})
 
     # print(st.session_state['messages'])
     # total_tokens = completion.usage.total_tokens

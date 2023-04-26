@@ -2,4 +2,4 @@ streamlit-authenticator
 streamlit
 streamlit-chat
 openai 
-dotenv
+python-dotenv
